@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faFlag,
@@ -8,15 +8,12 @@ import {
   faGrinAlt,
   faRightFromBracket,
 } from "@fortawesome/free-solid-svg-icons";
-import { useState } from "react";
 import { NavLink, Navigate } from "react-router-dom";
 
 export default function Sidebar() {
   const [redirect, setRedirect] = useState(false);
 
   const logout = async () => {
-    // document.cookie = "jwt=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-    // window.location.href = '/login';
     try {
       const response = await fetch("http://localhost:8000/api/logout", {
         method: "POST",
@@ -37,15 +34,16 @@ export default function Sidebar() {
   if (redirect) {
     return <Navigate replace to="/login" />;
   }
+
   return (
-    <nav className="sidebar">
+    <nav className="sidebar shadow">
       <div className="menu_content">
         {/* Menu Items */}
         <ul className="menu_items">
           {/* Dashboard */}
           <div className="menu_title menu_dashboard"></div>
-          <li className="item">
-            <a href="#" className="nav_link">
+          <li className="item navbar-item">
+            <a href="#" className="nav_link ">
               <span className="navlink_icon">
                 <FontAwesomeIcon icon={faHome} />
               </span>
@@ -54,7 +52,7 @@ export default function Sidebar() {
           </li>
 
           {/* Overview */}
-          <li className="item">
+          <li className="item navbar-item">
             <a href="#" className="nav_link">
               <span className="navlink_icon">
                 <FontAwesomeIcon icon={faGrinAlt} />
@@ -65,10 +63,10 @@ export default function Sidebar() {
         </ul>
 
         {/* Menu Items */}
-        <ul className="menu_items">
+        <ul className="menu_items ">
           {/* Setting */}
           <div className="menu_title menu_setting"></div>
-          <li className="item">
+          <li className="item navbar-item">
             <a href="#" className="nav_link">
               <span className="navlink_icon">
                 <FontAwesomeIcon icon={faFlag} />
@@ -76,7 +74,7 @@ export default function Sidebar() {
               <span className="navlink">Notice board</span>
             </a>
           </li>
-          <li className="item">
+          <li className="item navbar-item">
             <a href="#" className="nav_link">
               <span className="navlink_icon">
                 <FontAwesomeIcon icon={faMedal} />
@@ -84,7 +82,7 @@ export default function Sidebar() {
               <span className="navlink">Award</span>
             </a>
           </li>
-          <li className="item">
+          <li className="item navbar-item">
             <a href="#" className="nav_link">
               <span className="navlink_icon">
                 <FontAwesomeIcon icon={faCog} />
@@ -92,7 +90,7 @@ export default function Sidebar() {
               <span className="navlink">Setting</span>
             </a>
           </li>
-          <li className="item">
+          <li className="item navbar-item">
             <a onClick={logout} className="nav_link" target="">
               <span className="navlink_icon">
                 <FontAwesomeIcon icon={faRightFromBracket} />

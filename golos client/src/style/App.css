@@ -13,8 +13,8 @@
   --grey-color-light: #aaa;
 }
 body {
-  background-color: #ecf0f1;
   transition: all 0.5s ease;
+  background-color: #ef987b;
 }
 body.dark {
   background-color: #333;
@@ -89,75 +89,7 @@ body.dark {
 }
 /*End Alert box*/
 
-/* Form Login */
-.form-bg {
-  background-color: #ecf0f1;
-  display: flex;
-  justify-content: center;
-  width: 210vh;
-  height: 50vh;
-}
 
-.form-horizontal {
-  background: #fff;
-  padding-bottom: 40px;
-  border-radius: 15px;
-  text-align: center;
-}
-
-.form-horizontal .heading {
-  display: block;
-  font-size: 35px;
-  font-weight: 700;
-  padding: 35px 0;
-  border-bottom: 1px solid #f0f0f0;
-  margin-bottom: 30px;
-}
-.form-horizontal .form-group {
-  padding: 0 40px;
-  margin: 0 0 25px 0;
-  position: relative;
-}
-.form-horizontal .form-control {
-  background: #f0f0f0;
-  border: none;
-  border-radius: 20px;
-  box-shadow: none;
-  padding: 0 20px 0 45px;
-  height: 40px;
-  transition: all 0.3s ease 0s;
-}
-.form-horizontal .form-control:focus {
-  background: #e0e0e0;
-  box-shadow: none;
-  outline: 0 none;
-}
-.form-horizontal .text {
-  float: left;
-  margin-left: 7px;
-  line-height: 20px;
-  padding-top: 5px;
-  text-transform: capitalize;
-}
-.form-horizontal .btn {
-  float: right;
-  font-size: 14px;
-  color: #fff;
-  background: #ff6b6b;
-  border-radius: 30px;
-  padding: 10px 25px;
-  border: none;
-  text-transform: capitalize;
-  transition: all 0.5s ease 0s;
-}
-@media only screen and (max-width: 479px) {
-  .form-horizontal .form-group {
-    padding: 0 25px;
-  }
-  .form-horizontal .btn {
-    padding: 10px 20px;
-  }
-}
 /*-------------------*/
 
 /**********Home************/
@@ -206,8 +138,8 @@ body.dark {
 
 /* sidebar */
 .sidebar {
-  background-color: var(--white-color);
-  width: 260px;
+  background-color: antiquewhite;
+  width: 240px;
   position: fixed;
   top: 0;
   left: 0;
@@ -224,6 +156,16 @@ body.dark {
 .menu_content {
   position: relative;
 }
+
+@media screen and (max-width: 992px) {
+  .sidebar {
+    width: 200px; /* Ubah lebar sidebar untuk layar tablet */
+    /* Aturan lainnya */
+  }
+}
+
+
+
 .menu_title {
   margin: 15px 0;
   padding: 0 20px;
@@ -308,10 +250,131 @@ body.dark {
 }
 
 .container-IDE {
-  background-color: antiquewhite;
+  background-color: #ef987b;
 }
 
 .badanUsaha {
+  background-color: #ef987b;
+}
+
+
+.jvupfL {
+
+}
+
+/* Animasi pada Navbar saat di-hover */
+.navbar-item:hover {
+  transform: translateY(-3px);
+  transition: transform 0.3s ease-in-out;
+}
+
+/* Animasi pada dropdown saat dibuka */
+.dropdown-menu {
+  animation: fadeInDown 0.5s ease forwards;
+  display: none;
+  opacity: 0;
+}
+
+@keyframes fadeInDown {
+  from {
+    transform: translateY(-10px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.css-1xc3v61-indicatorContainer {
+  color: #333;
+}
+
+/* login */
+
+
+
+
+#LoginCard {
+  background: #faebd7;
+  border-radius: 8px;
+  box-shadow: 1px 2px 8px rgba(0, 0, 0, 0.65);
+  height: 410px;
+  margin: 6rem auto 8.1rem auto;
+  width: 329px;
+}
+#cardContent {
+  padding: 12px 44px;
+}
+#login-card-title{
+  font-family: "Raleway Thin", sans-serif;
+  letter-spacing: 4px;
+  padding-bottom: 23px;
+  padding-top: 13px;
+  text-align: center;
+}
+#signup {
+  color: #fd9043;
+  font-family: "Raleway", sans-serif;
+  font-size: 10pt;
+  margin-top: 16px;
+  text-align: center;
+}
+#login-submit-btn{
+  background: -webkit-linear-gradient(right, #fd8f42, #f9baba);
+  border: none;
+  border-radius: 21px;
+  box-shadow: 0px 1px 8px #c62e14;
+  cursor: pointer;
+  color: white;
+  font-family: "Raleway SemiBold", sans-serif;
+  height: 42.3px;
+  margin: 0 auto;
+  margin-top: 47px;
+  transition: 0.25s;
+  width: 153px;
+}
+#login-submit-btn:hover {
+  box-shadow: 0px 1px 18px #950808;
+}
+.login-form {
+  align-items: left;
+  display: flex;
+  flex-direction: column;
+}
+.login-form-border {
+  background: -webkit-linear-gradient(right, #fd8f42, #f9baba);
+  height: 1px;
+  width: 100%;
+}
+.login-form-content {
+  background: #faebd7;
+  border: none;
+  outline: none;
+  padding-top: 14px;
+}
+
+.login-underline-title {
+  background: -webkit-linear-gradient(right, #fd8f42, #f9baba);
+  height: 2px;
+  margin: .2rem auto 0 auto;
+  width: 80%
+}
+
+.login {
+  background: -webkit-linear-gradient(right, #fd8f42, #f9baba);
+}
+
+.card-ide {
+  background-color: antiquewhite;
+} 
+
+.nav-custom-color {
   background-color: antiquewhite;
 }
 
+.border-ide {
+  border-style: groove;
+  border-color: #afa28f6d;
+  border-width: medium;
+}

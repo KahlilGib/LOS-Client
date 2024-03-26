@@ -2,8 +2,6 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
-import Navbar from "../../components/Navbar";
-
 export default function Login1() {
   const [username, setEmail] = useState("");
   const [password, setPassword] = useState("");

@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { Navbar, Nav, NavDropdown } from "react-bootstrap";
-import Logo from "../assets/logoTeknologinovasiMandiri.png";
 import styled from "styled-components";
 
 const CustomNavbarBrand = styled(Navbar.Brand)`
@@ -10,7 +9,7 @@ const CustomNavbarBrand = styled(Navbar.Brand)`
   margin-right: 1rem;
 `;
 
-export default function MyNavbar() {
+export default function MyNavbarApproval() {
   // State to manage hover status for dropdowns
   const [dropdownHover, setDropdownHover] = useState(false);
   const [username, setUsername] = useState("");

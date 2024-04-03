@@ -378,3 +378,13 @@ body.dark {
   border-color: #afa28f6d;
   border-width: medium;
 }
+
+.centered-radio {
+  margin-left: 80px;
+  margin-bottom: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 10vh; /* Optional, for full-height centering */
+}
+

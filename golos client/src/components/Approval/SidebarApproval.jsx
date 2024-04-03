@@ -11,7 +11,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { NavLink, Navigate } from "react-router-dom";
 
-export default function Sidebar() {
+export default function SidebarApproval() {
   const [redirect, setRedirect] = useState(false);
   const [username, setUsername] = useState("");
 

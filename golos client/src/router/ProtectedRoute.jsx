@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Navigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const ProtectedRoute = ({ children }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -13,6 +14,8 @@ const ProtectedRoute = ({ children }) => {
           headers: { "Content-Type": "application/json" },
           credentials: "include",
         });
+
+        console.log(response);
         if (response.ok) {
           setIsLoggedIn(true);
         } else {
@@ -26,7 +29,19 @@ const ProtectedRoute = ({ children }) => {
       }
     };
 
-    checkLoginStatus();
+    // Tampilkan SweetAlert saat loading data
+    Swal.fire({
+      title: "Loading...",
+      allowOutsideClick: false,
+      didOpen: () => {
+        Swal.showLoading();
+      },
+    });
+
+    checkLoginStatus().then(() => {
+      // Tutup SweetAlert setelah data selesai dimuat
+      Swal.close();
+    });
   }, []);
 
   if (loading) {

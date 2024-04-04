@@ -34,7 +34,7 @@ export default function Login2() {
 
       const cookies = response.data["Set-Cookie"];
       localStorage.setItem("cookies", JSON.stringify(cookies));
-      navigate("/initialdataentry");
+      navigate("/");
     } catch (error) {
       // SweetAlert untuk login gagal
       Swal.fire({

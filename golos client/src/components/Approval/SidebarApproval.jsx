@@ -67,7 +67,7 @@ export default function SidebarApproval() {
           {/* Dashboard */}
           <div className="menu_title menu_dashboard"></div>
           <li className="item navbar-item">
-            <a href="#" className="nav_link ">
+            <a href="/" className="nav_link ">
               <span className="navlink_icon">
                 <FontAwesomeIcon icon={faHome} />
               </span>

@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { Navbar, Nav, NavDropdown } from "react-bootstrap";
-import Logo from "../assets/logoTeknologinovasiMandiri.png";
 import styled from "styled-components";
 
 const CustomNavbarBrand = styled(Navbar.Brand)`
@@ -88,7 +87,7 @@ export default function MyNavbar() {
               id="Initiation-dropdown"
               className="ms-3"
             >
-              <NavDropdown.Item href="/BadanUsaha">
+              <NavDropdown.Item href="/initialdataentry">
                 Initial Data Enty (ILP)
               </NavDropdown.Item>
             </NavDropdown>

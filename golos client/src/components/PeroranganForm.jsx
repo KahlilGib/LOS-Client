@@ -4,6 +4,7 @@ import axios from "axios";
 import Swal from "sweetalert2";
 import Modal from "./ModalZipCode";
 import ModalZipCode from "./ModalZipCode";
+import Input from "./Input";
 
 const PeroranganForm = () => {
   const [cif, setCif] = useState("");
@@ -50,6 +51,10 @@ const PeroranganForm = () => {
   const [namaInstansi, setNamaInstansi] = useState("");
   const [kodeInstansi, setKodeInstansi] = useState("");
   const [noPegawai, setNoPegawai] = useState("");
+  const [sektorEkonomi1, setSektorEkonomi1] = useState("");
+  const [sektorEkonomi2, setSektorEkonomi2] = useState("");
+  const [sektorEkonomi3, setSektorEkonomi3] = useState("");
+  const [sektorEkonomiOjk, setSektorEkonomiOjk] = useState("");
 
   const [groupNasabah, setGroupNasabah] = useState("");
   //select option state
@@ -62,6 +67,10 @@ const PeroranganForm = () => {
   const [businessSectorOption, setBusinessSectorOption] = useState([]);
   const [negaraDomisilioption, setNegaraDomisiliOption] = useState([]);
   const [kodeInstansiOption, setKodeInstansiOption] = useState([]);
+  const [sektorEkonomi1Option, setSektorEkonomi1Option] = useState([]);
+  const [sektorEkonomi2Option, setSektorEkonomi2Option] = useState([]);
+  const [sektorEkonomi3Option, setSektorEkonomi3Option] = useState([]);
+  const [sektorEkonomiOjkOption, setSektorEkonomiOjkOption] = useState([]);
 
   const handleZipCodeChange = (newZipCode) => {
     newZipCode.map((zip) => {
@@ -79,13 +88,14 @@ const PeroranganForm = () => {
     const fetchData = async () => {
       try {
         const endpoints = [
-          "http://localhost:8000/api/applicant/showhomestatus",
-          "http://localhost:8000/api/applicant/showapplicantaddresstype",
-          "http://localhost:8000/api/applicant/showeducation",
-          "http://localhost:8000/api/applicant/shownegara",
-          "http://localhost:8000/api/applicant/showjobposition",
-          "http://localhost:8000/api/applicant/showbusinesssector",
-          "http://localhost:8000/api/applicant/showkodeinstansi",
+          "http://localhost:8000/api/applicant/show-homestatus",
+          "http://localhost:8000/api/applicant/show-applicant-addresstype",
+          "http://localhost:8000/api/applicant/show-education",
+          "http://localhost:8000/api/applicant/show-negara",
+          "http://localhost:8000/api/applicant/show-job-position",
+          "http://localhost:8000/api/applicant/show-business-sector",
+          "http://localhost:8000/api/applicant/show-kode-instansi",
+          "http://localhost:8000/api/applicant/show-sektor-ekonomi",
         ];
 
         const requests = endpoints.map((endpoint) =>
@@ -105,6 +115,10 @@ const PeroranganForm = () => {
         setBusinessSectorOption(responses[5].data);
         setKodeInstansiOption(responses[6].data);
         setNegaraDomisiliOption(responses[3].data);
+        setSektorEkonomi1Option(responses[7].data);
+        setSektorEkonomi2Option(responses[7].data);
+        setSektorEkonomi3Option(responses[7].data);
+        setSektorEkonomiOjkOption(responses[7].data);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -163,6 +177,17 @@ const PeroranganForm = () => {
         nama_instansi: namaInstansi,
         kode_instansi: kodeInstansi,
         no_pegawai: noPegawai,
+        group_nasabah: groupNasabah,
+        sektor_ekonomi_1: sektorEkonomi1,
+        sektor_ekonomi_2: sektorEkonomi2,
+        sektor_ekonomi_3: sektorEkonomi3,
+        sektor_ekonomi_ojk: sektorEkonomiOjk,
+        net_income,
+        lokasi_pabrik,
+        key_person,
+        lokasi_dati_2,
+        hubungan_nasabah_bank,
+        hubungan_keluarga,
       };
 
       console.log("Data Form:", formData);
@@ -607,6 +632,65 @@ const PeroranganForm = () => {
               name="spouseIdIssued"
               value={spouseIdIssued}
               onChange={(e) => setSpouseIdIssued(e.target.value)}
+            />
+          </div>
+
+          <div className="mb-4">
+            <Input
+              type="text"
+              name="groupNasabah"
+              placeholder="Enter Group Nasabah"
+              autocomplete="off"
+              value={groupNasabah}
+              handleChange={(e) => setGroupNasabah(e.target.value)}
+              label="Group Nasabah"
+              required="false"
+              className="form-control"
+            />
+          </div>
+
+          <div className="mb-4">
+            <Input
+              type="select"
+              name="sektorEkonomi1"
+              placeholder="Enter Sektor Ekonomi"
+              autocomplete="off"
+              value={sektorEkonomi1}
+              handleChange={(e) => setSektorEkonomi1(e.target.value)}
+              required="false"
+              options={sektorEkonomi1Option}
+              className="form-select"
+              label="Sektor Ekonomi 1"
+            />
+          </div>
+
+          <div className="mb-4">
+            <Input
+              type="select"
+              name="sektorEkonomi2"
+              placeholder="Enter Sektor Ekonomi"
+              autocomplete="off"
+              value={sektorEkonomi2}
+              handleChange={(e) => setSektorEkonomi2(e.target.value)}
+              required="false"
+              options={sektorEkonomi2Option}
+              className="form-select"
+              label="Sektor Ekonomi 2"
+            />
+          </div>
+
+          <div className="mb-4">
+            <Input
+              type="select"
+              name="sektorEkonomi3"
+              placeholder="Enter Sektor Ekonomi"
+              autocomplete="off"
+              value={sektorEkonomi3}
+              handleChange={(e) => setSektorEkonomi3(e.target.value)}
+              required="false"
+              options={sektorEkonomi3Option}
+              className="form-select"
+              label="Sektor Ekonomi 3"
             />
           </div>
         </div>

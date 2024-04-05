@@ -39,6 +39,7 @@ export default function InitialDataEntry() {
   const [tglPenerbitan, setTglPenerbitan] = useState("");
   const [tglJatuhTempo, setTglJatuhTempo] = useState("");
   const [contactPerson, setContactPerson] = useState("");
+  const [displayData, setDisplayData] = useState("");
   const [selectedCompanyFirstName, setSelectedCompanyFirstName] = useState("");
   const [selectedCompanyTypes, setSelectedCompanyTypes] = useState("");
   const [selectedAddressTypes, setSelectedAddressTypes] = useState("");
@@ -121,6 +122,7 @@ export default function InitialDataEntry() {
         tgl_penerbitan: tglPenerbitan,
         tgl_jatuh_tempo: tglJatuhTempo,
         contact_person: contactPerson,
+        display_data: displayData,
       };
 
       console.log("Data Form:", formDataBadanUsaha);

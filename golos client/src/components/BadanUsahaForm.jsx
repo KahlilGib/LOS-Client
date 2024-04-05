@@ -77,6 +77,8 @@ const BadanUsahaForm = ({
   setSelectedBusinessType,
   onSubmit,
   funcZipCode,
+  displayData,
+  setDisplayData,
 }) => {
   console.log(companyTypes);
   return (
@@ -621,6 +623,17 @@ const BadanUsahaForm = ({
               value={contactPerson}
               onChange={(e) => setContactPerson(e.target.value)}
               required
+            />
+          </div>
+          <div class="mb-4">
+            <Input
+              type="text"
+              name="displayData"
+              placeholder="Enter Display Data"
+              autocomplete="off"
+              value={displayData}
+              handleChange={(e) => setDisplayData(e.target.value)}
+              label="Display Data"
             />
           </div>
         </div>

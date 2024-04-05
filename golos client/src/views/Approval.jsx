@@ -12,7 +12,7 @@ export default function Approval() {
     const fetchDataApproval = async () => {
       try {
         const endpoints = [
-          "http://localhost:8000/api/business/show",
+          "http://localhost:8000/api/approval/show",
           "http://localhost:8000/api/applicant/show",
         ];
 
@@ -47,12 +47,13 @@ export default function Approval() {
                   <thead className="table-success">
                     <tr>
                       <th scope="col">ID</th>
-                      <th scope="col">CIF</th>
-                      <th scope="col">COMPANY NAME</th>
-                      <th scope="col">EXTERNAL RATING</th>
-                      <th scope="col">BANDING</th>
-                      <th scope="col">TANGGAL BANDING</th>
-                      <th scope="col">BANDING OLEH</th>
+                      <th scope="col">Approval Setting ID</th>
+                      <th scope="col">Data</th>
+                      <th scope="col">Created Date</th>
+                      <th scope="col">Created By</th>
+                      <th scope="col">Updated Date</th>
+                      <th scope="col">Approval Status</th>
+                      <th scope="col">Process Date</th>
                       <th scope="col">ACTION</th>
                     </tr>
                   </thead>
@@ -61,12 +62,13 @@ export default function Approval() {
                       return (
                         <tr>
                           <td>{value.id}</td>
-                          <td>{value.cif}</td>
-                          <td>{value.company_name}</td>
-                          <td>{value.eternal_rating_company}</td>
-                          <td></td>
-                          <td></td>
-                          <td></td>
+                          <td>{value.approval_setting_id}</td>
+                          <td>{value.data}</td>
+                          <td>{value.created_date}</td>
+                          <td>{value.created_by}</td>
+                          <td>{value.updated_date}</td>
+                          <td>{value.approval_status}</td>
+                          <td>{value.process_date}</td>
                           <td>
                             <button type="button" class="btn btn-success">
                               Action

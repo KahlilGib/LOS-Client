@@ -43,8 +43,8 @@ const PeroranganForm = () => {
   const [businessSector, setBusinessSector] = useState("");
   const [establishDate, setEstablishDate] = useState("");
   const [npwp, setnpwp] = useState("");
-  const [grossIncomePerMonth, setGrossIncomePerMonth] = useState(0);
-  const [numberOfEmployees, setNumberOfEmployees] = useState(0);
+  const [grossIncomePerMonth, setGrossIncomePerMonth] = useState("");
+  const [numberOfEmployees, setNumberOfEmployees] = useState("");
   const [motherName, setMotherName] = useState("");
   const [namaPelaporan, setNamaPelaporan] = useState("");
   const [negaraDomisili, setNegaraDomisili] = useState("");
@@ -55,8 +55,13 @@ const PeroranganForm = () => {
   const [sektorEkonomi2, setSektorEkonomi2] = useState("");
   const [sektorEkonomi3, setSektorEkonomi3] = useState("");
   const [sektorEkonomiOjk, setSektorEkonomiOjk] = useState("");
-
   const [groupNasabah, setGroupNasabah] = useState("");
+  const [netIncome, setNetIncome] = useState("");
+  const [lokasiPabrik, setLokasiPabrik] = useState("");
+  const [keyPerson, setKeyPerson] = useState("");
+  const [lokasiPabrik2, setLokasiPabrik2] = useState("");
+  const [hubunganNasabahBank, setHubunganNasabahBank] = useState("");
+  const [hubunganKeluarga, setHubunganKeluarga] = useState("");
   //select option state
   const [homeStatusOptions, setHomeStatusOptions] = useState([]);
   const [idCardAddressTypeOptions, setIdCardAddressTypeOptions] = useState([]);
@@ -71,6 +76,12 @@ const PeroranganForm = () => {
   const [sektorEkonomi2Option, setSektorEkonomi2Option] = useState([]);
   const [sektorEkonomi3Option, setSektorEkonomi3Option] = useState([]);
   const [sektorEkonomiOjkOption, setSektorEkonomiOjkOption] = useState([]);
+  const [lokasiPabrikOption, setLokasiPabrikOption] = useState([]);
+  const [lokasiPabrikOption2, setLokasiPabrikOption2] = useState([]);
+  const [hubunganNasabahBankOption, setHubunganNasabahBankOption] = useState(
+    []
+  );
+  const [hubunganKeluargaOption, setHubunganKeluargaOption] = useState([]);
 
   const handleZipCodeChange = (newZipCode) => {
     newZipCode.map((zip) => {
@@ -96,6 +107,9 @@ const PeroranganForm = () => {
           "http://localhost:8000/api/applicant/show-business-sector",
           "http://localhost:8000/api/applicant/show-kode-instansi",
           "http://localhost:8000/api/applicant/show-sektor-ekonomi",
+          "http://localhost:8000/api/applicant/show-lokasi-pabrik",
+          "http://localhost:8000/api/applicant/show-hubungan-nasabah",
+          "http://localhost:8000/api/applicant/show-hubungan-keluarga",
         ];
 
         const requests = endpoints.map((endpoint) =>
@@ -119,6 +133,10 @@ const PeroranganForm = () => {
         setSektorEkonomi2Option(responses[7].data);
         setSektorEkonomi3Option(responses[7].data);
         setSektorEkonomiOjkOption(responses[7].data);
+        setLokasiPabrikOption(responses[8].data);
+        setLokasiPabrikOption2(responses[8].data);
+        setHubunganNasabahBankOption(responses[9].data);
+        setHubunganKeluargaOption(responses[10].data);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -132,6 +150,7 @@ const PeroranganForm = () => {
     const intNumChildren = parseInt(numberOfChildren);
     const grossIncomePM = parseInt(grossIncomePerMonth);
     const numberEmployee = parseInt(numberOfEmployees);
+    const netIncomeINT = parseInt(netIncome);
     try {
       const formData = {
         title_before_name: titleBeforeName,
@@ -182,12 +201,12 @@ const PeroranganForm = () => {
         sektor_ekonomi_2: sektorEkonomi2,
         sektor_ekonomi_3: sektorEkonomi3,
         sektor_ekonomi_ojk: sektorEkonomiOjk,
-        net_income,
-        lokasi_pabrik,
-        key_person,
-        lokasi_dati_2,
-        hubungan_nasabah_bank,
-        hubungan_keluarga,
+        net_income: netIncomeINT,
+        lokasi_pabrik: lokasiPabrik,
+        key_person: keyPerson,
+        lokasi_dati_2: lokasiPabrik2,
+        hubungan_nasabah_bank: hubunganNasabahBank,
+        hubungan_keluarga: hubunganKeluarga,
       };
 
       console.log("Data Form:", formData);
@@ -544,6 +563,7 @@ const PeroranganForm = () => {
             </label>
             <div class="input-group mb-4">
               <input
+                min={0}
                 type="number"
                 class="form-control"
                 id="Number of Children"
@@ -650,6 +670,9 @@ const PeroranganForm = () => {
           </div>
 
           <div className="mb-4">
+            <label className="mb-1" for="Net Income">
+              Sektor Ekonomi 1 <span class="text-danger fw-bold">*</span>
+            </label>
             <Input
               type="select"
               name="sektorEkonomi1"
@@ -657,14 +680,17 @@ const PeroranganForm = () => {
               autocomplete="off"
               value={sektorEkonomi1}
               handleChange={(e) => setSektorEkonomi1(e.target.value)}
-              required="false"
+              required="true"
               options={sektorEkonomi1Option}
               className="form-select"
-              label="Sektor Ekonomi 1"
+              disabledSelected="Sektor Ekonomi 1"
             />
           </div>
 
           <div className="mb-4">
+            <label className="mb-1" for="Net Income">
+              Sektor Ekonomi 2 <span class="text-danger fw-bold">*</span>
+            </label>
             <Input
               type="select"
               name="sektorEkonomi2"
@@ -672,14 +698,17 @@ const PeroranganForm = () => {
               autocomplete="off"
               value={sektorEkonomi2}
               handleChange={(e) => setSektorEkonomi2(e.target.value)}
-              required="false"
+              required="true"
               options={sektorEkonomi2Option}
               className="form-select"
-              label="Sektor Ekonomi 2"
+              disabledSelected={"Sektor Ekonomi 2"}
             />
           </div>
 
           <div className="mb-4">
+            <label className="mb-1" for="Net Income">
+              Sektor Ekonomi 3 <span class="text-danger fw-bold">*</span>
+            </label>
             <Input
               type="select"
               name="sektorEkonomi3"
@@ -687,10 +716,10 @@ const PeroranganForm = () => {
               autocomplete="off"
               value={sektorEkonomi3}
               handleChange={(e) => setSektorEkonomi3(e.target.value)}
-              required="false"
+              required="true"
               options={sektorEkonomi3Option}
               className="form-select"
-              label="Sektor Ekonomi 3"
+              disabledSelected={"Sektor Ekonomi 3"}
             />
           </div>
         </div>
@@ -1061,6 +1090,135 @@ const PeroranganForm = () => {
               autoComplete="off"
               value={noPegawai}
               onChange={(e) => setNoPegawai(e.target.value)}
+            />
+          </div>
+
+          <div class="d-flex justify-content-center mb-3 mt-3 text-muted">
+            Spouse Data
+          </div>
+
+          <div className="mb-4">
+            <label className="mb-1" for="Net Income">
+              Sektor Ekonomi OJK <span class="text-danger fw-bold">*</span>
+            </label>
+            <Input
+              type="select"
+              name="sektorEkonomiOjk"
+              placeholder="Enter Sektor Ekonomi"
+              autocomplete="off"
+              value={sektorEkonomiOjk}
+              handleChange={(e) => setSektorEkonomiOjk(e.target.value)}
+              required="true"
+              options={sektorEkonomiOjkOption}
+              className="form-select"
+              disabledSelected={"Sektor Ekonomi OJK"}
+            />
+          </div>
+
+          <div className="mb-4">
+            <label className="mb-1" for="Net Income">
+              Net Income <span class="text-danger fw-bold">*</span>
+            </label>
+            <Input
+              type="number"
+              name="netIncome"
+              placeholder="Enter Nett Income"
+              autocomplete="off"
+              value={netIncome}
+              handleChange={(e) => setNetIncome(e.target.value)}
+              required="true"
+              className="form-control"
+            />
+          </div>
+
+          <div className="mb-4">
+            <label className="mb-1" for="Net Income">
+              Lokasi Pabrik/Kebun/Proyek{" "}
+            </label>
+            <Input
+              type="select"
+              name="lokasiPabrik"
+              placeholder="Enter Lokasi Pabrik/Kebun/Proyek"
+              autocomplete="off"
+              value={lokasiPabrik}
+              handleChange={(e) => setLokasiPabrik(e.target.value)}
+              required="false"
+              options={lokasiPabrikOption}
+              className="form-select"
+              disabledSelected="Lokasi Pabrik/Kebun/Proyek"
+            />
+          </div>
+
+          <div className="mb-4">
+            <label className="mb-1" for="Net Income">
+              Key Person <span class="text-danger fw-bold">*</span>
+            </label>
+            <Input
+              type="text"
+              name="keyPerson"
+              placeholder="Enter Key Person"
+              autocomplete="off"
+              value={keyPerson}
+              handleChange={(e) => setKeyPerson(e.target.value)}
+              required="true"
+              className="form-control"
+            />
+          </div>
+
+          <div className="mb-4">
+            <label className="mb-1" for="Net Income">
+              Lokasi Dati II{" "}
+            </label>
+            <Input
+              type="select"
+              name="lokasiPabrik2"
+              placeholder="Enter Lokasi DATI II"
+              autocomplete="off"
+              value={lokasiPabrik2}
+              handleChange={(e) => setLokasiPabrik2(e.target.value)}
+              required="false"
+              options={lokasiPabrikOption2}
+              className="form-select"
+              disabledSelected={"Lokasi DATI II"}
+            />
+          </div>
+
+          <div className="mb-4">
+            <label className="mb-1" for="Net Income">
+              Hubungan Nasabah Dengan Executive Bank{" "}
+              <span class="text-danger fw-bold">*</span>
+            </label>
+            <Input
+              type="select"
+              name="hubunganNasabahBank"
+              placeholder="Enter Hubungan Nasabah Dengan Pejabat Executive Bank"
+              autocomplete="off"
+              value={hubunganNasabahBank}
+              handleChange={(e) => setHubunganNasabahBank(e.target.value)}
+              required="true"
+              options={hubunganNasabahBankOption}
+              className="form-select"
+              disabledSelected={
+                "Hubungan Nasabah Dengan Pejabat Executive Bank"
+              }
+            />
+          </div>
+
+          <div className="mb-4">
+            <label className="mb-1" for="Net Income">
+              Hubungan Keluarga{" "}
+            </label>
+            <Input
+              type="select"
+              name="hubunganKeluarga"
+              placeholder="Enter Hubungan Nasabah Dengan Pejabat Executive Bank"
+              autocomplete="off"
+              value={hubunganKeluarga}
+              handleChange={(e) => setHubunganKeluarga(e.target.value)}
+              required="true"
+              options={hubunganKeluargaOption}
+              className="form-select"
+              disabledSelected={"Hubungan Keluarga"}
             />
           </div>
         </div>

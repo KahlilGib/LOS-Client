@@ -43,42 +43,44 @@ export default function Approval() {
           <div className="row justify-content-center mt-4">
             <div className="col-md-15">
               <Card title="Approval">
-                <table className="table table-striped table-bordered">
-                  <thead className="table-success">
-                    <tr>
-                      <th scope="col">ID</th>
-                      <th scope="col">Approval Setting ID</th>
-                      <th scope="col">Data</th>
-                      <th scope="col">Created Date</th>
-                      <th scope="col">Created By</th>
-                      <th scope="col">Updated Date</th>
-                      <th scope="col">Approval Status</th>
-                      <th scope="col">Process Date</th>
-                      <th scope="col">ACTION</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {dataBusiness.map((value, index) => {
-                      return (
-                        <tr>
-                          <td>{value.id}</td>
-                          <td>{value.approval_setting_id}</td>
-                          <td>{value.data}</td>
-                          <td>{value.created_date}</td>
-                          <td>{value.created_by}</td>
-                          <td>{value.updated_date}</td>
-                          <td>{value.approval_status}</td>
-                          <td>{value.process_date}</td>
-                          <td>
-                            <button type="button" class="btn btn-success">
-                              Action
-                            </button>
-                          </td>
-                        </tr>
-                      );
-                    })}
-                  </tbody>
-                </table>
+                <div class="table-responsive">
+                  <table className="table table-striped table-bordered table-hover">
+                    <thead className="table-success">
+                      <tr>
+                        <th scope="col">Display Data</th>
+                        <th scope="col">Approval Setting ID</th>
+                        <th scope="col">Data</th>
+                        <th scope="col">Created Date</th>
+                        <th scope="col">Created By</th>
+                        <th scope="col">Updated Date</th>
+                        <th scope="col">Approval Status</th>
+                        <th scope="col">Process Date</th>
+                        <th scope="col">ACTION</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {dataBusiness.map((value, index) => {
+                        return (
+                          <tr>
+                            <td>{value.display_data}</td>
+                            <td>{value.approval_setting_id}</td>
+                            <td>{value.data}</td>
+                            <td>{value.created_date}</td>
+                            <td>{value.created_by}</td>
+                            <td>{value.updated_date}</td>
+                            <td>{value.approval_status}</td>
+                            <td>{value.process_date}</td>
+                            <td>
+                              <button type="button" class="btn btn-success">
+                                Action
+                              </button>
+                            </td>
+                          </tr>
+                        );
+                      })}
+                    </tbody>
+                  </table>
+                </div>
               </Card>
             </div>
           </div>

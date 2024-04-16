@@ -12,6 +12,7 @@ export default function Input({
   required,
   className,
   options,
+  disabledSelected,
 }) {
   const id = useId();
   return (
@@ -28,7 +29,7 @@ export default function Input({
           value={value}
         >
           <option value="" selected disabled>
-            -- Select Company Type --
+            -- Select {disabledSelected} --
           </option>
           {options.map((item, index) => (
             <option key={id} value={item}>

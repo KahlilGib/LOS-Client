@@ -87,7 +87,7 @@ export default function MyNavbarApproval() {
               id="Initiation-dropdown"
               className="ms-3"
             >
-              <NavDropdown.Item href="/BadanUsaha">
+              <NavDropdown.Item href="/initialdataentry">
                 Initial Data Enty (ILP)
               </NavDropdown.Item>
             </NavDropdown>

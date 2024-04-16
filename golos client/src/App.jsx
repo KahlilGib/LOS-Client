@@ -17,7 +17,7 @@ function App() {
             element={<ProtectedRoute children={<InitialDataEntry />} />}
           />
           <Route
-            path="/approval"
+            path="/approvedreject"
             element={<ProtectedRoute children={<Approval />} />}
           />
           <Route path="/login" element={<Login2 />} />

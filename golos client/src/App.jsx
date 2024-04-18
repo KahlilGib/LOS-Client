@@ -5,6 +5,7 @@ import InitialDataEntry from "./views/InitialDataEntry";
 import ProtectedRoute from "./router/ProtectedRoute";
 import Approval from "./views/Approval";
 import Home from "./views/Home";
+import Bussiness from "./views/Bussiness";
 
 function App() {
   return (
@@ -19,6 +20,10 @@ function App() {
           <Route
             path="/approvedreject"
             element={<ProtectedRoute children={<Approval />} />}
+          />
+          <Route
+            path="/bussiness"
+            element={<ProtectedRoute children={<Bussiness />} />}
           />
           <Route path="/login" element={<Login2 />} />
         </Routes>

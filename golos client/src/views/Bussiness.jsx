@@ -1,30 +1,17 @@
 import React, { useState, useEffect } from "react";
 import Swal from "sweetalert2";
+import Navbar from "../components/Navbar";
+import Sidebar from "../components/Sidebar";
 import axios from "axios";
-import Navbar from "../components/Approval/NavbarApproval";
-import Sidebar from "../components/Approval/SidebarApproval";
 import Card from "../components/Approval/CardComponentApproval";
-import TableComponent from "../components/TableComponent";
 
-export default function Approval() {
+export default function Bussiness() {
   const [dataBusiness, setDataBusiness] = useState([]);
-  const [dataApplicant, setDataApplicant] = useState([]);
-  const header = [
-    "Display Data",
-    "Approval Setting ID",
-    "Data",
-    "Created Date",
-    "Created By",
-    "Updated Date",
-    "Approval Status",
-    "Process Date",
-    "ACTION",
-  ];
   useEffect(() => {
     const fetchDataApproval = async () => {
       try {
         const endpoints = [
-          "http://localhost:8000/api/approval/show",
+          "http://localhost:8000/api/business/show",
           "http://localhost:8000/api/applicant/show",
         ];
 
@@ -47,29 +34,27 @@ export default function Approval() {
     fetchDataApproval();
   }, []);
 
-  const approveData = async (id) => {
+  const handleDelete = async (id) => {
     try {
-      const response = await axios.post(
-        `http://localhost:8000/api/approval/${id}`,
+      const response = await axios.delete(
+        `http://localhost:8000/api/business/delete/${id}`,
         {
           headers: { "Content-Type": "application/json" },
           credentials: "include",
         }
       );
-
-      if (response.data.message === "success") {
+      if (response.data.success) {
         Swal.fire({
-          title: "Success!",
-          text: "Data has been approved successfully.",
           icon: "success",
-        }).then(() => {
-          window.location.reload();
+          title: "Success",
+          text: response.data.message,
         });
+        setDataBusiness(dataBusiness.filter((data) => data.id !== id));
       } else {
         Swal.fire({
-          title: "Error!",
-          text: "Something went wrong, please try again later.",
           icon: "error",
+          title: "Error",
+          text: response.data.message,
         });
       }
     } catch (error) {
@@ -90,37 +75,38 @@ export default function Approval() {
         <main className="col-md-9 ms-sm-auto col-lg-10 px-md-4 mt-5">
           <div className="row justify-content-center mt-4">
             <div className="col-md-15">
-              <Card title="Approval">
+              <Card title="Business">
                 <div class="table-responsive mt-3 ">
                   <table className="table table-striped table-bordered table-hover">
                     <thead className="table-success">
                       <tr>
                         <th scope="col " class="text-center">
-                          Display Data
+                          Company Name
                         </th>
                         <th scope="col " class="text-center">
-                          Approval Setting ID
+                          Establish Place
                         </th>
                         <th scope="col " class="text-center">
-                          Data
+                          Company Address
                         </th>
                         <th scope="col " class="text-center">
-                          Created Date
+                          Business Type
                         </th>
                         <th scope="col " class="text-center">
-                          Created By
+                          Akta Pendirian
                         </th>
                         <th scope="col " class="text-center">
-                          Updated Date
+                          No. Telepon
                         </th>
                         <th scope="col " class="text-center">
-                          Approval Status
+                          NPWP
                         </th>
                         <th scope="col " class="text-center">
-                          Process Date
+                          Contact Person
                         </th>
-                        <th scope="col" class="text-center">
-                          ACTION
+
+                        <th scope="col " class="text-center">
+                          Action
                         </th>
                       </tr>
                     </thead>
@@ -128,28 +114,31 @@ export default function Approval() {
                       {dataBusiness.map((value, index) => {
                         return (
                           <tr>
-                            <td>{value.display_data}</td>
-                            <td>{value.approval_setting_id}</td>
-                            <td>{value.data}</td>
-                            <td>{value.created_date}</td>
-                            <td>{value.created_by}</td>
-                            <td>{value.updated_date}</td>
-                            <td>{value.approval_status}</td>
-                            <td>{value.process_date}</td>
+                            <td>
+                              {value.company_first_name}. {value.company_name}
+                            </td>
+                            <td>{value.establish_place}</td>
+                            <td>{value.company_address}</td>
+                            <td>{value.business_type}</td>
+                            <td>{value.akta_pendirian}</td>
+                            <td>{value.no_telepon}</td>
+                            <td>{value.npwp}</td>
+                            <td>{value.contact_person}</td>
                             <td>
                               <div class="btn-group" role="group">
                                 <div className="mx-1">
-                                  <button type="button" class="btn btn-danger">
-                                    Reject
+                                  <button type="button" class="btn btn-success">
+                                    Edit
                                   </button>
                                 </div>
+
                                 <div className="mx-1">
                                   <button
                                     type="button"
-                                    class="btn btn-success"
-                                    onClick={() => approveData(value.id)}
+                                    class="btn btn-danger"
+                                    onClick={() => handleDelete(value.id)}
                                   >
-                                    Approve
+                                    Delete
                                   </button>
                                 </div>
                               </div>

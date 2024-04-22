@@ -49,29 +49,78 @@ export default function Approval() {
 
   const approveData = async (id) => {
     try {
-      const response = await axios.post(
+      const getCookie = (name) => {
+        const cookieValue = document.cookie
+          .split("; ")
+          .find((row) => row.startsWith(name))
+          ?.split("=")[1];
+        return cookieValue ? decodeURIComponent(cookieValue) : null;
+      };
+
+      const token = getCookie("jwt");
+
+      const response = await axios.put(
         `http://localhost:8000/api/approval/${id}`,
+        {},
         {
-          headers: { "Content-Type": "application/json" },
-          credentials: "include",
+          headers: {
+            "Content-Type": "application/json",
+            // Kirim token sebagai otorisasi
+            Authorization: `Bearer ${token}`,
+          },
+          withCredentials: true, // Aktifkan penggunaan cookie
         }
       );
 
-      if (response.data.message === "success") {
-        Swal.fire({
-          title: "Success!",
-          text: "Data has been approved successfully.",
-          icon: "success",
-        }).then(() => {
-          window.location.reload();
-        });
-      } else {
-        Swal.fire({
-          title: "Error!",
-          text: "Something went wrong, please try again later.",
-          icon: "error",
-        });
-      }
+      Swal.fire({
+        title: "Success!",
+        text: "Data has been approved successfully.",
+        icon: "success",
+      }).then(() => {
+        window.location.reload();
+      });
+    } catch (error) {
+      console.error("Error approving data:", error);
+      Swal.fire({
+        title: "Error!",
+        text: "Something went wrong, please try again later.",
+        icon: "error",
+      });
+    }
+  };
+
+  const rejectData = async (id) => {
+    try {
+      const getCookie = (name) => {
+        const cookieValue = document.cookie
+          .split("; ")
+          .find((row) => row.startsWith(name))
+          ?.split("=")[1];
+        return cookieValue ? decodeURIComponent(cookieValue) : null;
+      };
+
+      const token = getCookie("jwt");
+
+      const response = await axios.put(
+        `http://localhost:8000/api/approval/${id}/reject`,
+        {},
+        {
+          headers: {
+            "Content-Type": "application/json",
+            // Kirim token sebagai otorisasi
+            Authorization: `Bearer ${token}`,
+          },
+          withCredentials: true, // Aktifkan penggunaan cookie
+        }
+      );
+
+      Swal.fire({
+        title: "Success!",
+        text: "Data has been rejected successfully.",
+        icon: "success",
+      }).then(() => {
+        window.location.reload();
+      });
     } catch (error) {
       console.error("Error approving data:", error);
       Swal.fire({
@@ -98,26 +147,19 @@ export default function Approval() {
                         <th scope="col " class="text-center">
                           Display Data
                         </th>
-                        <th scope="col " class="text-center">
-                          Approval Setting ID
-                        </th>
-                        <th scope="col " class="text-center">
-                          Data
-                        </th>
+
                         <th scope="col " class="text-center">
                           Created Date
                         </th>
                         <th scope="col " class="text-center">
                           Created By
                         </th>
-                        <th scope="col " class="text-center">
-                          Updated Date
-                        </th>
+
                         <th scope="col " class="text-center">
                           Approval Status
                         </th>
                         <th scope="col " class="text-center">
-                          Process Date
+                          Description
                         </th>
                         <th scope="col" class="text-center">
                           ACTION
@@ -129,17 +171,19 @@ export default function Approval() {
                         return (
                           <tr>
                             <td>{value.display_data}</td>
-                            <td>{value.approval_setting_id}</td>
-                            <td>{value.data}</td>
                             <td>{value.created_date}</td>
                             <td>{value.created_by}</td>
-                            <td>{value.updated_date}</td>
+
                             <td>{value.approval_status}</td>
-                            <td>{value.process_date}</td>
+                            <td>{value.description}</td>
                             <td>
                               <div class="btn-group" role="group">
                                 <div className="mx-1">
-                                  <button type="button" class="btn btn-danger">
+                                  <button
+                                    type="button"
+                                    class="btn btn-danger"
+                                    onClick={() => rejectData(value.id)}
+                                  >
                                     Reject
                                   </button>
                                 </div>

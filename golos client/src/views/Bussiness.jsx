@@ -121,7 +121,7 @@ export default function Bussiness() {
                             <td>{value.company_address}</td>
                             <td>{value.business_type}</td>
                             <td>{value.akta_pendirian}</td>
-                            <td>{value.no_telepon}</td>
+                            <td>{value.no_telp}</td>
                             <td>{value.npwp}</td>
                             <td>{value.contact_person}</td>
                             <td>

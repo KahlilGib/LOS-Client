@@ -111,6 +111,14 @@ export default function MyNavbarApproval() {
                 Approved/Reject Letter (ILP)
               </NavDropdown.Item>
             </NavDropdown>
+
+            <NavDropdown
+              title="Data Management"
+              id="data-management-dropdown"
+              className="ms-3"
+            >
+              <NavDropdown.Item href="/bussiness">Bussiness</NavDropdown.Item>
+            </NavDropdown>
           </NavDropdown>
           <Nav.Link href="#credit-admin" className="nav-link navbar-item">
             Credit Admin
